@@ -1,6 +1,6 @@
 {
   "name": "@notasjs/local-client",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -36,11 +36,11 @@
     "react-resizable": "3.0.5"
   },
   "devDependencies": {
-    "@types/react-redux": "7.1.25",
-    "@types/react-resizable": "3.0.4",
     "@types/prettier": "2.7.2",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
+    "@types/react-redux": "7.1.25",
+    "@types/react-resizable": "3.0.4",
     "@vitejs/plugin-react": "3.0.0",
     "typescript": "4.9.3",
     "vite": "4.3.9"
