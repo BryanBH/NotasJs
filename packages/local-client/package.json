@@ -15,6 +15,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BryanBH/jbook.git"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.4.0",
     "@monaco-editor/react": "4.5.0",
