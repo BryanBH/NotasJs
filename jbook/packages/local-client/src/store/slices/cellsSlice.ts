@@ -1,5 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Cell, direction, cellType } from '../../models';
+import { Cell} from '../../models';
+import { fetchCells, saveCells } from '../asyncThunks';
+import {
+  DeleteCellAction,
+  UpdateCellAction,
+  InsertCellAfterAction,
+  MoveCellAction,
+} from '../actions/index';
 
 // cell object type
 interface cells {
@@ -29,21 +36,17 @@ const cellSlice = createSlice({
      * @param state
      * @param action id of cell and content to be updated
      */
-    updateCell: (
-      state,
-      action: PayloadAction<{ id: string; content: string }>
-    ) => {
+    updateCell: (state, action: PayloadAction<UpdateCellAction>) => {
       const { id, content } = action.payload;
       state.data[id].content = content;
     },
     /**
      * Delete cell
      * @param state
-     * @param action stirng id id of cell being deleted
+     * @param action string id of cell being deleted
      */
     deleteCellByID: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-
       //remove cell from data
       delete state.data[id];
 
@@ -55,10 +58,7 @@ const cellSlice = createSlice({
      * @param state
      * @param action object { id: string, direction: "up" | "down"}
      */
-    moveCellByID: (
-      state,
-      action: PayloadAction<{ id: string; direction: direction }>
-    ) => {
+    moveCellByID: (state, action: PayloadAction<MoveCellAction>) => {
       const { id, direction } = action.payload;
       const index = state.order.findIndex((cellIds) => cellIds === id);
       const targetIndex = direction === 'up' ? index - 1 : index + 1;
@@ -75,10 +75,7 @@ const cellSlice = createSlice({
      * @param action id and cell type of cell that the newly created cell will be inserted after the current cell
      * if no cell exist, new cell will be inserted as the last element in the order
      */
-    insertCellAfter: (
-      state,
-      action: PayloadAction<{ id: string | null; cellType: cellType }>
-    ) => {
+    insertCellAfter: (state, action: PayloadAction<InsertCellAfterAction>) => {
       const { id, cellType } = action.payload;
 
       let cell: Cell;
@@ -109,6 +106,33 @@ const cellSlice = createSlice({
         state.order.splice(index + 1, 0, cell.id);
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCells.pending, (state, action) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchCells.fulfilled, (state, action) => {
+      state.order = action.payload.map((cell) => cell.id);
+      state.data = action.payload?.reduce((acc, cell) => {
+        acc[cell.id] = cell;
+        return acc;
+      }, {} as cellState['data']);
+    });
+    builder.addCase(fetchCells.rejected, (state, action: any) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    });
+    builder.addCase(saveCells.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(saveCells.fulfilled, (state, action) => {
+      state.loading = false;
+    });
+    builder.addCase(saveCells.rejected, (state, action) => {
+      const error: any = action.payload;
+      state.error = error;
+    });
   },
 });
 // generate random 3 string

@@ -27,6 +27,7 @@ const bundle = async (rawCode: string) => {
         [env]: '"production"',
         global: 'window',
       },
+      // this allows for users to import react but don't really need it 
       jsxFactory: '_React.createElement',
       jsxFragment: '_React.Fragment'
     });

@@ -1,32 +1,37 @@
 {
-  "name": "cli",
+  "name": "notasjs",
   "version": "1.0.0",
-  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  "description": "Cli for notasjs",
   "keywords": [],
   "author": "BryanBH <bryanbenjumea@gmail.com>",
   "license": "ISC",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BryanBH/jbook.git"
   },
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "node ./__tests__/cli.test.js"
+    "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\""
   },
   "bugs": {
     "url": "https://github.com/BryanBH/jbook/issues"
   },
   "homepage": "https://github.com/BryanBH/jbook#readme",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": "dist/index.js",
   "dependencies": {
+    "@notasjs/local-client": "^0.1.0"
+  },
+  "devDependencies": {
+    "@notasjs/local-api": "file:.../local-api",
     "commander": "^11.0.0",
-    "local-api": "file:.../local-api",
+    "esbuild": "0.17.17",
+    "@types/node": "^20.3.1",
     "typescript": "^5.1.3"
   }
 }

@@ -7,11 +7,10 @@ import { updateCell } from './store/slices/cellsSlice';
 
 function App() {
   // initial code/ text editor for testing purposes
-  const [insertCell] = useEnhanchedDispatch(insertCellAfter);
-  useEffect(() => {
-    insertCell({ id: null, cellType: 'code' });
-   
-  }, []);
+  // const [insertCell] = useEnhanchedDispatch(insertCellAfter);
+  // useEffect(() => {
+  //   insertCell({ id: null, cellType: 'code' });
+  // }, []);
 
   return (
     <div>
