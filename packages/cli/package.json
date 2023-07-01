@@ -1,6 +1,6 @@
 {
   "name": "notasjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cli for notasjs",
   "keywords": [],
   "author": "BryanBH <bryanbenjumea@gmail.com>",
@@ -25,7 +25,7 @@
   },
   "bin": "dist/index.js",
   "dependencies": {
-    "@notasjs/local-client": "^1.0.0"
+    "@notasjs/local-client": "^1.0.1"
   },
   "devDependencies": {
     "@notasjs/local-api": "file:.../local-api",
