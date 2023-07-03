@@ -2,6 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Rootstate } from '../index';
 import axios from 'axios';
 
+/**
+ * Async function call to save updated cell data 
+ */
 export const saveCells = createAsyncThunk(
   'cellSlice/saveCells',
   async (args, { getState, rejectWithValue }) => {

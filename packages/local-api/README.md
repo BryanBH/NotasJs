@@ -1,11 +1,3 @@
-# `local-api`
+# `@notasjs/local-api`
 
-> TODO: description
-
-## Usage
-
-```
-const localApi = require('local-api');
-
-// TODO: DEMONSTRATE API
-```
+> Api which handles the server creation and comunication with the client application

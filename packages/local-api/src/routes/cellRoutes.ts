@@ -48,10 +48,8 @@ export const cellRoutes = (filename: string, dir: string) => {
   cellRouter.post('/', async (req, res) => {
     // Take list of cells from the request obj
     // serialize them
-
     const { cells }: { cells: Cell[] } = req.body;
     // write the cells into the file
-    console.log(cells);
     await fs.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
 
     res.send({ status: 'ok' });

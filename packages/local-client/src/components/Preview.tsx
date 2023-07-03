@@ -41,6 +41,12 @@ const html = `
     </html>
   `;
 
+/**
+ *
+ * @param code bundled code to be displayed
+ * @param err code errors to be displayed
+ * @returns
+ */
 const Preview: React.FC<PreviewProps> = ({ code, err }) => {
   const iframe = useRef<any>();
 
@@ -59,7 +65,12 @@ const Preview: React.FC<PreviewProps> = ({ code, err }) => {
         sandbox='allow-scripts'
         srcDoc={html}
       />
-      {err && <div className='preview-error'><h4>Compile Error</h4>{err}</div>}
+      {err && (
+        <div className='preview-error'>
+          <h4>Compile Error</h4>
+          {err}
+        </div>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Rootstate } from '../store';
 
 /**
- * Hook to select all code cell's and combine their contents to allow for code to be shared between cells
+ * Hook to select all code cells and combine their contents to allow for code to be shared between cells
  * @param cellId Id of cell
  * @returns string of cumulative code cell content which includes the show function
  */

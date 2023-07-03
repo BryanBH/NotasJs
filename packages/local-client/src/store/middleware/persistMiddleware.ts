@@ -1,4 +1,4 @@
-import { saveCells, fetchCells } from '../index';
+import { saveCells } from '../index';
 
 import {
   deleteCellByID,

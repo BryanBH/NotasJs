@@ -7,6 +7,11 @@ interface ResizableProps {
   children: React.ReactNode;
 }
 
+/**
+ * Resizable wrapper for cells
+ * @param direction direction of resizable content
+ * @returns
+ */
 const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   // get window dimensions
   const getWindowDimensions = () => {
@@ -36,7 +41,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
     window.addEventListener('resize', onResize);
 
     return () => window.removeEventListener('resize', onResize);
-  },[width]);
+  }, [width]);
 
   let resizableProps: ResizableBoxProps;
 

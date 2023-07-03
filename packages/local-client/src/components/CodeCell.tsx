@@ -14,6 +14,11 @@ interface CodeCellProps {
   cell: Cell;
 }
 
+/**
+ * Code cell component which handles the entire code bundle and transpile process
+ * @param cell Code cell to be displayed
+ * @returns
+ */
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const dispatch = useAppDispatch();
   const [updateCellContent] = useEnhanchedDispatch(updateCell);
@@ -29,17 +34,13 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   useEffect(() => {
     // initial bundling proccess
     if (!bundle) {
-      dispatch(
-        createBundle({ cellId: cell.id, input: cumulativeCode })
-      );
+      dispatch(createBundle({ cellId: cell.id, input: cumulativeCode }));
       return;
     }
 
     const timer = setTimeout(async () => {
       // bundle code and update state every .75 seconds of innactivity
-      dispatch(
-        createBundle({ cellId: cell.id, input: cumulativeCode})
-      );
+      dispatch(createBundle({ cellId: cell.id, input: cumulativeCode }));
     }, 750);
     return () => clearTimeout(timer);
   }, [cell.id, cumulativeCode, createBundle]);

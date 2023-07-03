@@ -9,6 +9,11 @@ interface TextEditorProps {
   cell: Cell;
 }
 
+/**
+ * Text editor component
+ * @param cell text cell with content
+ * @returns
+ */
 const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
   const [editing, setEditing] = useState(false);
   const editorRef = useRef<HTMLDivElement | null>(null);
@@ -32,9 +37,9 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
     return () => document.removeEventListener('click', listener);
   }, []);
 
-  const handleChange = (value:  string ) => {
-    updateCell({id: cell.id, content: value})
-  }
+  const handleChange = (value: string) => {
+    updateCell({ id: cell.id, content: value });
+  };
 
   if (editing) {
     return (
@@ -42,7 +47,7 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
         <MDEditor
           value={cell.content}
           onChange={(value) => {
-            updateCellContent({id: cell.id, content: value || ''})
+            updateCellContent({ id: cell.id, content: value || '' });
           }}
         />
       </div>

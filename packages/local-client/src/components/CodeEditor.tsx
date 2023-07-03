@@ -6,9 +6,14 @@ import parser from 'prettier/parser-babel';
 
 interface CodeEditorProps {
   initialValue: string;
-  onChange: OnChange
+  onChange: OnChange;
 }
 
+/**
+ * Monaco code editor
+ * @param initialValue Editor initial value
+ * @returns
+ */
 const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
   const editorRef = useRef<any>();
 

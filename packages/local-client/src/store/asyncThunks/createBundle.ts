@@ -7,7 +7,7 @@ interface asyncArgs {
 }
 
 /**
- * async call to bundle the user code
+ * async call to bundle the user's code
  */
 export const createBundle = createAsyncThunk(
   'bundleSlice/createBundle',

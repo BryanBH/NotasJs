@@ -1,8 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Cell} from '../../models';
+import { Cell } from '../../models';
 import { fetchCells, saveCells } from '../asyncThunks';
 import {
-  DeleteCellAction,
   UpdateCellAction,
   InsertCellAfterAction,
   MoveCellAction,
@@ -80,6 +79,15 @@ const cellSlice = createSlice({
 
       let cell: Cell;
 
+      // filter number of created code cells
+      let numCodeCells = Object.keys(
+        Object.fromEntries(
+          Object.entries(state.data).filter(
+            ([key, cell]) => cell.type === 'code'
+          )
+        )
+      ).length;
+
       if (cellType === 'text') {
         cell = {
           content: '# Click To Edit',
@@ -87,8 +95,12 @@ const cellSlice = createSlice({
           id: randomId(),
         };
       } else {
+        const codeContent =
+          numCodeCells < 1
+            ? tempReactContent
+            : '// Show(content) displays content on cell frame';
         cell = {
-          content: tempReactContent,
+          content: codeContent,
           type: cellType,
           id: randomId(),
         };
@@ -145,5 +157,6 @@ export const cellsReducer = cellSlice.reducer;
 const tempReactContent = `const App = () => {
   return <h1 style={{ color: 'black' }}>Hello world</h1>;
 };
+// Show(content) displays content on cell frame
 show(<App/>)
 `;

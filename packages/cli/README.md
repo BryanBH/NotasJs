@@ -1,11 +1,13 @@
-# `cli`
+# `Notajs`
 
-> TODO: description
+> Application that allows you to code and write markdown files with in your browser
 
-## Usage
+## Usage: notasjs [options] [command]
 
-```
-const cli = require('cli');
+Options:\
+-h, --help &emsp;display help for command\
+-p, --port &emsp;port to run server on, 4005 by default
 
-// TODO: DEMONSTRATE API
-```
+Commands:\
+serve [options] [filename] Open a file for editing\
+help [command] display help for command

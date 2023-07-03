@@ -6,7 +6,9 @@ import { moveCellByID, deleteCellByID } from '../store';
 interface ActionBarProps {
   id: string;
 }
-
+/**
+ * Cell action bar Component
+ */
 const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
   const [moveCell] = useEnhanchedDispatch(moveCellByID);
   const [deleteCell] = useEnhanchedDispatch(deleteCellByID);

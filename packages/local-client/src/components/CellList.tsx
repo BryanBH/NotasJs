@@ -5,7 +5,7 @@ import { Rootstate } from '../store';
 import CellListItem from './CellListItem';
 import AddCell from './AddCell';
 import { useAppDispatch } from '../store';
-import { fetchCells, saveCells } from '../store';
+import { fetchCells } from '../store';
 
 /**
  * High Level component which contains the list of cells
@@ -21,7 +21,6 @@ const CellList: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchCells());
-    // dispatch(saveCells());
   }, [dispatch]);
 
 

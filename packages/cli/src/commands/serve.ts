@@ -21,7 +21,9 @@ export const serveCommand = new Command()
         return typeof err.code === 'string';
       };
       try {
+        // join file name and current directory together
         const dir = path.join(process.cwd(), path.dirname(filename));
+        // call function and launch server
         await serve(
           parseInt(options.port),
           path.basename(filename),
@@ -38,7 +40,6 @@ export const serveCommand = new Command()
           } else if (error instanceof Error) {
             console.log('Something unexpected occured: ', error.message);
           }
-
           process.exit(1);
         }
       }
